@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 
+# Узнаем id пользователя.
 User = get_user_model()
 
 
@@ -69,3 +70,29 @@ class Customer(models.Model):
 
 	def __str__(self):
 		return 'Покупатель: {} {}'.format(self.user.first_name, self.user.last_name)
+
+
+# Продукт - Свитшот.
+class Sweatshirts(Product):
+
+	information = models.CharField(max_length=255, verbose_name='Информация о товаре')
+
+	# Соблюдайте рекомендации и инструкции по уходу, машинная стирка согласно инструкции на этикетке.
+	care = models.CharField(max_length=255, verbose_name='Уход')
+	about_clothes = models.CharField(max_length=255, verbose_name='Об одежде')
+	model_size = models.CharField(max_length=255, verbose_name='Размер модели')
+
+
+# Продукт - Штаны.
+class Pants(Product):
+
+	information = models.CharField(max_length=255, verbose_name='Информация о товаре')
+
+	# Соблюдайте рекомендации и инструкции по уходу, машинная стирка согласно инструкции на этикетке.
+	care = models.CharField(max_length=255, verbose_name='Уход')
+	about_clothes = models.CharField(max_length=255, verbose_name='Об одежде')
+	model_size = models.CharField(max_length=255, verbose_name='Размер модели')
+
+	def __str__(self):
+		return '{} : {}'.format(self.category.name, self.title)
+
